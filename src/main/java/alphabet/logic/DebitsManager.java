@@ -84,7 +84,7 @@ public class DebitsManager {
         List<BillingTransaction> advanceDebitsSortedByTransactionTime = fetchAdvanceDebits(advance);
 
         moveAdvanceFailedDebitsToWeekFromLastPayment(advanceDebitsSortedByTransactionTime);
-        updateAdvanceDebitsToPerformStatusToWaitingToBeSent(advanceDebitsSortedByTransactionTime);
+        updateStatusOfAdvanceDebitsToPerformToWaitingToBeSent(advanceDebitsSortedByTransactionTime);
     }
 
     private List<BillingTransaction> fetchAdvanceDebits(BillingTransaction advance) {
@@ -114,7 +114,7 @@ public class DebitsManager {
         }
     }
 
-    private void updateAdvanceDebitsToPerformStatusToWaitingToBeSent(List<BillingTransaction> allAdvanceDebits) {
+    private void updateStatusOfAdvanceDebitsToPerformToWaitingToBeSent(List<BillingTransaction> allAdvanceDebits) {
         List<BillingTransaction> debitsToPerform = extractDebitsToPerform(allAdvanceDebits);
         debitsToPerform.forEach(this::updateDebitStatusToWaitingToBeSent);
 
